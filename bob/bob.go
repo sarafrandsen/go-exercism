@@ -1,8 +1,3 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package bob should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
 package bob
 
 import (
@@ -10,6 +5,7 @@ import (
 	"unicode"
 )
 
+// hasLetters checks if there are any alpha characters
 func hasLetters(remark string) bool {
 	for _, r := range remark {
 		if unicode.IsLetter(r) {
@@ -19,6 +15,7 @@ func hasLetters(remark string) bool {
 	return false
 }
 
+// isShouting checks if all alpha characters are uppercase
 func isShouting(remark string) bool {
 	if remark == strings.ToUpper(remark) && hasLetters(remark) {
 		return true
@@ -26,27 +23,21 @@ func isShouting(remark string) bool {
 	return false
 }
 
-// Hey should have a comment documenting it.
+// Hey returns the response Bob would give based on a given remark
 func Hey(remark string) string {
-	// if string.all == caps && string.last == ?
-	// if string.all == caps || string.last == !
-	// if string.last == ?
-	// if string == ""
-	// else
-
-	// refactor to use case
-
 	var reply string
 	remark = strings.TrimSpace(remark)
-	if isShouting(remark) && strings.HasSuffix(remark, "?") {
+
+	switch {
+	case isShouting(remark) && strings.HasSuffix(remark, "?"):
 		reply = "Calm down, I know what I'm doing!"
-	} else if isShouting(remark) {
-		reply = "Whoa, chill out!"
-	} else if strings.HasSuffix(remark, "?") {
+	case strings.HasSuffix(remark, "?"):
 		reply = "Sure."
-	} else if remark == "" {
+	case isShouting(remark):
+		reply = "Whoa, chill out!"
+	case remark == "":
 		reply = "Fine. Be that way!"
-	} else {
+	default:
 		reply = "Whatever."
 	}
 	return reply
