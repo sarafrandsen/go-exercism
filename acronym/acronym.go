@@ -14,7 +14,7 @@ func isSpecialChar(c byte) bool {
 func Abbreviate(s string) string {
 	a := ""
 	for i, char := range s {
-		if i == 0 || (i != 0 && isSpecialChar(s[i-1]) && string(s[i]) != " ") {
+		if i == 0 || (i != 0 && isSpecialChar(s[i-1]) && s[i] != 32) {
 			a += string(char)
 		}
 	}
