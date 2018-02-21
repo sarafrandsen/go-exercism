@@ -25,20 +25,18 @@ func isShouting(remark string) bool {
 
 // Hey returns the response Bob would give based on a given remark
 func Hey(remark string) string {
-	var reply string
 	remark = strings.TrimSpace(remark)
 
 	switch {
 	case isShouting(remark) && strings.HasSuffix(remark, "?"):
-		reply = "Calm down, I know what I'm doing!"
+		return "Calm down, I know what I'm doing!"
 	case strings.HasSuffix(remark, "?"):
-		reply = "Sure."
+		return "Sure."
 	case isShouting(remark):
-		reply = "Whoa, chill out!"
+		return "Whoa, chill out!"
 	case remark == "":
-		reply = "Fine. Be that way!"
+		return "Fine. Be that way!"
 	default:
-		reply = "Whatever."
+		return "Whatever."
 	}
-	return reply
 }
