@@ -1,35 +1,25 @@
 package space
 
-func SecondsToEarthDays(seconds int) float64 {
-	// seconds * 60 = minutes
-	// minutes * 60 = hours
-	// hours * 24 = days
-	// days * 365.25 = Earth year
+// Planet represents a planet
+type Planet string
 
+const secondsPerEarthYear = 31557600.0
+
+func round(seconds float64) float64 {
+	return float64(int64(seconds/0.01+0.5)) * 0.01
 }
 
-func MercurcyAge(seconds int) float64 {
-
-}
-func VenusAge(seconds int) float64 {
-
-}
-func MarsAge(seconds int) float64 {
-
-}
-func JupiterAge(seconds int) float64 {
-
-}
-func SaturnAge(seconds int) float64 {
-
-}
-func UranusAge(seconds int) float64 {
-
-}
-func NeptuneAge(seconds int) float64 {
-
-}
-
-func SpaceAge(seconds int, planet string) float64 {
-	if 
+// Age compares time in a planet's orbit to Earth's orbit
+func Age(seconds float64, planet Planet) float64 {
+	planets := map[Planet]float64{
+		"Earth":   1.0,
+		"Mercury": 0.2408467,
+		"Venus":   0.61519726,
+		"Mars":    1.8808158,
+		"Jupiter": 11.862615,
+		"Saturn":  29.447498,
+		"Uranus":  84.016846,
+		"Neptune": 164.79132,
+	}
+	return round(seconds / (secondsPerEarthYear * planets[planet]))
 }
